@@ -31,9 +31,9 @@ type TimeSignature = {
 
 let convertToBeeps (timeSignature: TimeSignature): MetronomeAction list =
     let metronomeActions = match timeSignature.Division with
-                           | Half -> [ BeepHi; Silent; Silent; Silent; Silent; Silent; Silent; Silent; Silent; Silent; Silent; Silent; Silent; Silent; Silent; Silent; ]
-                           | Quarter -> [ BeepHi; Silent; Silent; Silent; Silent; Silent; Silent; Silent; ]
-                           | Eighth -> [ BeepHi; Silent; Silent; Silent; ]
+                           | Half -> [ BeepHi; Silent; Silent; Silent; Silent; Silent; Silent; Silent; ]
+                           | Quarter -> [ BeepHi; Silent; Silent; Silent; ]
+                           | Eighth -> [ BeepHi; Silent; ]
                            | Sixteenth -> [ BeepHi; ]
     
     metronomeActions
@@ -90,9 +90,10 @@ let timer = new Timer
                             printAction currentAction
                             
                             match currentAction with
-                            | BeepHi -> Async.Start (async { playClickHiAsync() |> ignore })
-                            | BeepLo -> Async.Start (async { playClickLoAsync() |> ignore })
+                            | BeepHi -> async { playClickHiAsync() |> ignore } |> Async.Start
+                            | BeepLo -> async { playClickLoAsync() |> ignore } |> Async.Start
                             | Silent -> ()
+                            
                             
                             match currentAction with
                             | BeepHi -> printfn "HI"
