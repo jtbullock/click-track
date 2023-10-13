@@ -76,46 +76,31 @@ printfn "Metronome State:"
 let testState = MetronomeState(metronome)
 testState.MetronomeActions |> List.iter printAction
 
-let timer = new Timer
-                (
-                    (fun state ->
-                        let metronomeState = state :?> MetronomeState
+let actionToSound (action: MetronomeAction) =
+    match action with
+    | BeepHi -> async { playClickHiAsync() |> ignore } |> Async.Start
+    | BeepLo -> async { playClickLoAsync() |> ignore } |> Async.Start
+    | Silent -> ()
+    
+let actionDebug (action: MetronomeAction) =
+    printf "Executing Action: " 
+    printAction action
+
+let onTimer (state:obj) =
+    let metronomeState = state :?> MetronomeState
                         
-                        printfn "Received State:"
-                        metronomeState.MetronomeActions |> List.iter printAction
-                        
-                        match metronomeState.MetronomeActions with
-                        | currentAction :: rest ->
-                            printf "Executing Action: " 
-                            printAction currentAction
-                            
-                            match currentAction with
-                            | BeepHi -> async { playClickHiAsync() |> ignore } |> Async.Start
-                            | BeepLo -> async { playClickLoAsync() |> ignore } |> Async.Start
-                            | Silent -> ()
-                            
-                            
-                            match currentAction with
-                            | BeepHi -> printfn "HI"
-                            | BeepLo -> printfn "LO"
-                            | Silent -> printfn "xx"
-                            
-                            metronomeState.MetronomeActions <- rest
-                        | [] -> ()
-                    ),
-                    MetronomeState(metronome),
-                    clock,
-                    clock 
-                )
+    printfn "Received State:"
+    metronomeState.MetronomeActions |> List.iter printAction
+    
+    match metronomeState.MetronomeActions with
+    | currentAction :: remainingActions ->
+        actionToSound currentAction
+        actionDebug currentAction
+        metronomeState.MetronomeActions <- remainingActions
+    | [] -> ()
+
+let timer = new Timer(onTimer, MetronomeState(metronome), clock, clock)
 
 printfn $"Clock speed: {clock}"
-
-// let timer2 = new Timer
-//                 (
-//                     (fun _ -> Async.Start (async { playClickHiAsync() |> ignore })),
-//                     null,
-//                     clock,
-//                     clock
-//                 )
 
 System.Console.ReadKey() |> ignore
