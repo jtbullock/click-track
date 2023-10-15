@@ -1,41 +1,116 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:gui="clr-namespace:ClickTrack.GUI"
+             xmlns:lib="clr-namespace:ClickTrack.Lib;assembly=ClickTrack.Lib"
              x:Class="ClickTrack.GUI.MainPage">
-
-    <ScrollView>
-        <VerticalStackLayout
-            Spacing="25"
-            Padding="30,0"
-            VerticalOptions="Center">
-
-            <Image
-                Source="dotnet_bot.png"
-                SemanticProperties.Description="Cute dot net bot waving hi to you!"
-                HeightRequest="200"
-                HorizontalOptions="Center" />
-
-            <Label
-                Text="Hello, World!"
-                SemanticProperties.HeadingLevel="Level1"
-                FontSize="32"
-                HorizontalOptions="Center" />
-
-            <Label
-                Text="Welcome to .NET Multi-platform App UI"
-                SemanticProperties.HeadingLevel="Level2"
-                SemanticProperties.Description="Welcome to dot net Multi platform App U I"
-                FontSize="18"
-                HorizontalOptions="Center" />
-
-            <Button
-                x:Name="CounterBtn"
-                Text="Click me"
-                SemanticProperties.Hint="Counts the number of times you click"
-                Clicked="OnCounterClicked"
-                HorizontalOptions="Center" />
-
-        </VerticalStackLayout>
-    </ScrollView>
+    
+    <ContentPage.BindingContext>
+        <gui:AppViewModel />
+    </ContentPage.BindingContext>
+    
+    <HorizontalStackLayout>
+        <Label>Hello!</Label>
+        
+        <Frame BorderColor="Blue" WidthRequest="400">
+            <ListView>
+                <ListView.ItemsSource>
+                    <x:Array Type="{x:Type x:String}">
+                        <x:String>Baboon</x:String>
+                        <x:String>Capuchin Monkey</x:String>
+                        <x:String>Blue Monkey</x:String>
+                        <x:String>Squirrel Monkey</x:String>
+                        <x:String>Golden Lion Tamarin</x:String>
+                        <x:String>Howler Monkey</x:String>
+                        <x:String>Japanese Macaque</x:String>
+                        <x:String>Mandrill</x:String>
+                        <x:String>Proboscis Monkey</x:String>
+                        <x:String>Red-shanked Douc</x:String>
+                        <x:String>Gray-shanked Douc</x:String>
+                        <x:String>Golden Snub-nosed Monkey</x:String>
+                        <x:String>Black Snub-nosed Monkey</x:String>
+                        <x:String>Tonkin Snub-nosed Monkey</x:String>
+                        <x:String>Thomas's Langur</x:String>
+                        <x:String>Purple-faced Langur</x:String>
+                        <x:String>Gelada</x:String>
+                    </x:Array>
+                </ListView.ItemsSource>
+            </ListView>
+        </Frame>
+    </HorizontalStackLayout>
+    
+    <!-- <ScrollView> -->
+    <!--      -->
+    <!--     <HorizontalStackLayout> -->
+    <!--         <Label Text="Measure 2: " /> -->
+    <!-- -->
+    <!--          -->
+    <!--          -->
+    <!--         ~1~ <ListView ItemsSource="{x:Static lib:MetronomeUI.MeasuresExample}"> @1@ -->
+    <!--         ~1~     <ListView.ItemTemplate> @1@ -->
+    <!--         ~1~         <DataTemplate> @1@ -->
+    <!--         ~1~             <ViewCell> @1@ -->
+    <!--         ~1~                 <Label Text="{Binding timeSignature.Division}" /> @1@ -->
+    <!--         ~1~             </ViewCell> @1@ -->
+    <!--         ~1~         </DataTemplate> @1@ -->
+    <!--         ~1~     </ListView.ItemTemplate> @1@ -->
+    <!--         ~1~ </ListView> @1@ -->
+    <!--          -->
+    <!--         <Label Text="Measure 1: " /> -->
+    <!-- -->
+    <!-- -->
+    <!--         <StackLayout BindableLayout.ItemsSource="{x:Binding Measures}"> -->
+    <!--             <BindableLayout.ItemTemplate> -->
+    <!--                 <DataTemplate> -->
+    <!--                     <HorizontalStackLayout> -->
+    <!--                         <Label Text="Beats: " /> -->
+    <!--                         <Label Text="{Binding timeSignature.Beats}" /> -->
+    <!--                         <Label Text="Subdivision: " /> -->
+    <!--                         <Label Text="{Binding timeSignature.Division}" /> -->
+    <!--                     </HorizontalStackLayout> -->
+    <!--                 </DataTemplate> -->
+    <!--             </BindableLayout.ItemTemplate> -->
+    <!--         </StackLayout> -->
+    <!--          -->
+    <!--         <Label>Hello from Josh!</Label> -->
+    <!--         <Label -->
+    <!--             Text="{x:Binding MeasuresCount}"></Label> -->
+    <!--          -->
+    <!--         ~1~ <VerticalStackLayout @1@ -->
+    <!--         ~1~     Spacing="25" @1@ -->
+    <!--         ~1~     Padding="30,0" @1@ -->
+    <!--         ~1~     VerticalOptions="Center"> @1@ -->
+    <!--         ~1~ @1@ -->
+    <!--         ~1~     <Image @1@ -->
+    <!--         ~1~         Source="dotnet_bot.png" @1@ -->
+    <!--         ~1~         SemanticProperties.Description="Cute dot net bot waving hi to you!" @1@ -->
+    <!--         ~1~         HeightRequest="200" @1@ -->
+    <!--         ~1~         HorizontalOptions="Center" /> @1@ -->
+    <!--         ~1~ @1@ -->
+    <!--         ~1~     <Label @1@ -->
+    <!--         ~1~         Text="Hello, World!" @1@ -->
+    <!--         ~1~         SemanticProperties.HeadingLevel="Level1" @1@ -->
+    <!--         ~1~         FontSize="32" @1@ -->
+    <!--         ~1~         HorizontalOptions="Center" /> @1@ -->
+    <!--         ~1~ @1@ -->
+    <!--         ~1~     <Label @1@ -->
+    <!--         ~1~         Text="Welcome to .NET Multi-platform App UI" @1@ -->
+    <!--         ~1~         SemanticProperties.HeadingLevel="Level2" @1@ -->
+    <!--         ~1~         SemanticProperties.Description="Welcome to dot net Multi platform App U I" @1@ -->
+    <!--         ~1~         FontSize="18" @1@ -->
+    <!--         ~1~         HorizontalOptions="Center" /> @1@ -->
+    <!--         ~1~ @1@ -->
+    <!--         ~1~     <Button @1@ -->
+    <!--         ~1~         x:Name="CounterBtn" @1@ -->
+    <!--         ~1~         Text="Click me" @1@ -->
+    <!--         ~1~         SemanticProperties.Hint="Counts the number of times you click" @1@ -->
+    <!--         ~1~         Clicked="OnCounterClicked" @1@ -->
+    <!--         ~1~         HorizontalOptions="Center" /> @1@ -->
+    <!-- -->
+    <!--         ~1~ </VerticalStackLayout> @1@ -->
+    <!--     </HorizontalStackLayout> -->
+    <!--      -->
+    <!--      -->
+    <!-- </ScrollView> -->
 
 </ContentPage>
