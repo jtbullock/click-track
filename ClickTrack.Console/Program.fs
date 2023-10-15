@@ -1,5 +1,6 @@
 ﻿open System.Diagnostics
 open System.Threading
+open ClickTrack.Lib.Song
 open ClickTrack.Lib.Metronome
 
 let sampleFileHi = "Synth_Square_C_hi.wav"
@@ -7,35 +8,10 @@ let sampleFileLo = "Synth_Square_C_lo.wav"
 let audioPlayerExe = "afplay"
 let sampleRootDirectory = @"/Users/josh/Downloads/Metronomes/Favs/"
 
-type MetronomeAction =
-    | BeepHi
-    | BeepLo
-    | Silent
-
-// type Song = {
-//     TimeSignatures: TimeSignature list
-// }
-
-let convertToBeeps (timeSignature: TimeSignature): MetronomeAction list =
-    let firstBeat = match timeSignature.Division with
-                           | Half -> [ BeepHi; Silent; Silent; Silent; Silent; Silent; Silent; Silent; ]
-                           | Quarter -> [ BeepHi; Silent; Silent; Silent; ]
-                           | Eighth -> [ BeepHi; Silent; ]
-                           | Sixteenth -> [ BeepHi; ]
-    
-    firstBeat
-    |> List.replicate (timeSignature.Beats - 1)
-    |> List.concat
-    |> List.map (fun action -> if action = BeepHi then BeepLo else action)
-    |> List.append firstBeat
-
-let convertToMetronomeActions (song: TimeSignature list) =
-    song |> List.map convertToBeeps |> List.concat
-
 let song = [ { Beats = 4; Division = Quarter }; { Beats = 6; Division = Eighth } ]
-let metronome = convertToMetronomeActions song
+let metronome = measuresToMetronomeActions song
 
-let tempo = 150
+let tempo = 120
 let clock = ( 60000 / tempo ) / 4
 
 printfn $"Clock speed: {clock}"
@@ -63,8 +39,8 @@ let printAction (action: MetronomeAction) =
 let actionDebug (action: MetronomeAction) =
     printf "Executing Action: " 
     printAction action
-    
-metronome |> List.iter printAction
+
+
 
 printfn "Starting Metronome..."
 
@@ -93,5 +69,3 @@ let timer = new Timer(onTimer, metronomeState, clock, clock)
 
 threadSync.WaitOne() |> ignore
 timer.Dispose()
-
-//System.Console.ReadKey() |> ignore

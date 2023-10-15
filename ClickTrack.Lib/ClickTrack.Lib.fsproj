@@ -6,7 +6,9 @@
     </PropertyGroup>
 
     <ItemGroup>
-        <Compile Include="Library.fs"/>
+        <Compile Include="Song.fs" />
+        <Compile Include="Metronome.fs" />
+        <Compile Include="MetronomeUI.fs" />
     </ItemGroup>
 
 </Project>
