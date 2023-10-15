@@ -7,7 +7,7 @@ type MetronomeAction =
     | BeepLo
     | Silent
 
-let convertToBeeps (timeSignature: TimeSignature): MetronomeAction list =
+let convertToMetronomeActions (timeSignature: TimeSignature): MetronomeAction list =
     let firstBeat = match timeSignature.Division with
                            | Half -> [ BeepHi; Silent; Silent; Silent; Silent; Silent; Silent; Silent; ]
                            | Quarter -> [ BeepHi; Silent; Silent; Silent; ]
@@ -21,4 +21,4 @@ let convertToBeeps (timeSignature: TimeSignature): MetronomeAction list =
     |> List.append firstBeat
 
 let measuresToMetronomeActions (song: TimeSignature list) =
-    song |> List.map convertToBeeps |> List.concat
+    song |> List.map convertToMetronomeActions |> List.concat
