@@ -1,4 +1,6 @@
-﻿using Microsoft.Extensions.Logging;
+﻿using MauiIcons.Fluent;
+using MauiIcons.FluentFilled;
+using Microsoft.Extensions.Logging;
 
 namespace ClickTrack.GUI;
 
@@ -14,6 +16,9 @@ public static class MauiProgram
                 fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");
                 fonts.AddFont("OpenSans-Semibold.ttf", "OpenSansSemibold");
             });
+        
+        builder.UseMauiApp<App>().UseFluentMauiIcons();
+        builder.UseMauiApp<App>().UseFluentFilledMauiIcons();
 
 #if DEBUG
         builder.Logging.AddDebug();

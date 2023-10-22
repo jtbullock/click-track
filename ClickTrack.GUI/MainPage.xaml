@@ -3,41 +3,57 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:gui="clr-namespace:ClickTrack.GUI"
              xmlns:lib="clr-namespace:ClickTrack.Lib;assembly=ClickTrack.Lib"
+             xmlns:fluent="clr-namespace:MauiIcons.Fluent;assembly=MauiIcons.Fluent"
+             xmlns:fluentFilled="clr-namespace:MauiIcons.FluentFilled;assembly=MauiIcons.FluentFilled"
              x:Class="ClickTrack.GUI.MainPage">
     
     <ContentPage.BindingContext>
         <gui:AppViewModel />
     </ContentPage.BindingContext>
     
-    <HorizontalStackLayout>
-        <Label>Hello!</Label>
+    <VerticalStackLayout>
+        <HorizontalStackLayout>
+            <Label>Hello!</Label>
+            <fluent:MauiIcon Icon="Play12"/>
+            <fluentFilled:MauiIcon Icon="Play12Filled"/>
+        </HorizontalStackLayout>
         
-        <Frame BorderColor="Blue" WidthRequest="400">
-            <ListView>
-                <ListView.ItemsSource>
-                    <x:Array Type="{x:Type x:String}">
-                        <x:String>Baboon</x:String>
-                        <x:String>Capuchin Monkey</x:String>
-                        <x:String>Blue Monkey</x:String>
-                        <x:String>Squirrel Monkey</x:String>
-                        <x:String>Golden Lion Tamarin</x:String>
-                        <x:String>Howler Monkey</x:String>
-                        <x:String>Japanese Macaque</x:String>
-                        <x:String>Mandrill</x:String>
-                        <x:String>Proboscis Monkey</x:String>
-                        <x:String>Red-shanked Douc</x:String>
-                        <x:String>Gray-shanked Douc</x:String>
-                        <x:String>Golden Snub-nosed Monkey</x:String>
-                        <x:String>Black Snub-nosed Monkey</x:String>
-                        <x:String>Tonkin Snub-nosed Monkey</x:String>
-                        <x:String>Thomas's Langur</x:String>
-                        <x:String>Purple-faced Langur</x:String>
-                        <x:String>Gelada</x:String>
-                    </x:Array>
-                </ListView.ItemsSource>
-            </ListView>
-        </Frame>
-    </HorizontalStackLayout>
+        <FlexLayout>
+            <gui:TimeSignatureView Beats="4" Subdivision="4"></gui:TimeSignatureView>
+            <gui:TimeSignatureView Beats="6" Subdivision="8"></gui:TimeSignatureView>
+            <gui:TimeSignatureView Beats="12" Subdivision="8"></gui:TimeSignatureView>
+            
+            <!-- <gui:TimeSignatureView></gui:TimeSignatureView> -->
+            <!-- <gui:TimeSignatureView></gui:TimeSignatureView> -->
+            <!-- <gui:TimeSignatureView></gui:TimeSignatureView> -->
+        </FlexLayout>
+        
+        <!-- <Frame BorderColor="Blue" WidthRequest="400"> -->
+        <!--     <ListView> -->
+        <!--         <ListView.ItemsSource> -->
+        <!--             <x:Array Type="{x:Type x:String}"> -->
+        <!--                 <x:String>Baboon</x:String> -->
+        <!--                 <x:String>Capuchin Monkey</x:String> -->
+        <!--                 <x:String>Blue Monkey</x:String> -->
+        <!--                 <x:String>Squirrel Monkey</x:String> -->
+        <!--                 <x:String>Golden Lion Tamarin</x:String> -->
+        <!--                 <x:String>Howler Monkey</x:String> -->
+        <!--                 <x:String>Japanese Macaque</x:String> -->
+        <!--                 <x:String>Mandrill</x:String> -->
+        <!--                 <x:String>Proboscis Monkey</x:String> -->
+        <!--                 <x:String>Red-shanked Douc</x:String> -->
+        <!--                 <x:String>Gray-shanked Douc</x:String> -->
+        <!--                 <x:String>Golden Snub-nosed Monkey</x:String> -->
+        <!--                 <x:String>Black Snub-nosed Monkey</x:String> -->
+        <!--                 <x:String>Tonkin Snub-nosed Monkey</x:String> -->
+        <!--                 <x:String>Thomas's Langur</x:String> -->
+        <!--                 <x:String>Purple-faced Langur</x:String> -->
+        <!--                 <x:String>Gelada</x:String> -->
+        <!--             </x:Array> -->
+        <!--         </ListView.ItemsSource> -->
+        <!--     </ListView> -->
+        <!-- </Frame> -->
+    </VerticalStackLayout>
     
     <!-- <ScrollView> -->
     <!--      -->

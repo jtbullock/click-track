@@ -11,7 +11,7 @@ let sampleRootDirectory = @"/Users/josh/Downloads/Metronomes/Favs/"
 let song = [ { Beats = 4; Division = Quarter }; { Beats = 6; Division = Eighth } ]
 let metronome = measuresToMetronomeActions song
 
-let tempo = 120
+let tempo = 120 //bpm
 let clock = ( 60000 / tempo ) / 4
 
 printfn $"Clock speed: {clock}"
@@ -61,8 +61,8 @@ let onTimer (state:obj) =
     
     match state.MetronomeActions with
     | currentAction :: remainingActions ->
-        state.MetronomeActions <- remainingActions
         actionToSound currentAction
+        state.MetronomeActions <- remainingActions
     | [] -> state.CompletedEvent.Set() |> ignore
 
 let timer = new Timer(onTimer, metronomeState, clock, clock)

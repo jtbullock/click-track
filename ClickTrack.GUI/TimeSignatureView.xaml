@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="ClickTrack.GUI.TimeSignatureView"
+             x:Name="This">
+    <Frame BindingContext="{x:Reference This}"
+           BorderColor="White" Margin="4, 0">
+        <VerticalStackLayout>
+            <Label FontSize="20" Text="{Binding Beats}" HorizontalOptions="Center"></Label>
+            <Label FontSize="20" Text="{Binding Subdivision}" HorizontalOptions="Center"></Label>
+        </VerticalStackLayout>
+    </Frame>
+</ContentView>
